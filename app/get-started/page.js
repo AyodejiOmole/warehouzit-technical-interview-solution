@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import Login from '@/components/Login';
 
 const GetStarted = () => {
   return (
-    <div>
-      
+    <div className='w-full lg:p-8 p-4'>
+      <Login/>
     </div>
   )
 }
