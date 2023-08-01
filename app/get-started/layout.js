@@ -23,12 +23,26 @@ const GetStartedLayout = ({ children }) => {
 
             <div className="flex items-center justify-center lg:w-1/3 w-full md:w-1/2 mx-auto">
                 {/* <!-- Left horizontal line --> */}
-                <div className="lg:w-1/4 md:w-1/4 w-1/3 h-px bg-gray-400"></div> 
+                <div className="lg:w-1/4 md:w-1/4 w-1/4 h-px bg-gray-400"></div> 
                 
-                <span className="mx-3 text-black text-sm">or continue with</span>
+                <span className="mx-3 text-black text-xs lg:text-sm">or continue with</span>
 
                 {/* <!-- Right horizontal line --> */}
-                <div className="lg:w-1/4 md:w-1/4 w-1/3 h-px bg-gray-400"></div> 
+                <div className="lg:w-1/4 md:w-1/4 w-1/4 h-px bg-gray-400"></div> 
+            </div>
+
+            {/* Buttons to allow users to login and register via google and register */}
+            <div className="flex w-full gap-3 my-4 align-center justify-center">
+                <Image
+                    src={"/assets/google.png"}
+                    alt="Google logo"
+                    width={40}
+                    height={40}/>
+                <Image
+                    src={"/assets/facebook.png"}
+                    alt="Facebook logo"
+                    width={40}
+                    height={40}/>
             </div>
         </div>
     )

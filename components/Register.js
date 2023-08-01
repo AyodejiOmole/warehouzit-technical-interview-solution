@@ -14,7 +14,11 @@ const Register = () => {
     confirmPassword: "",
     phoneNumber: "",
     role: "spaceseeker",
+    agreeToTerms: false
   });
+
+  // To register if the user has clicked the register button and the registration has began asynchronously.
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // To determine if the input boxes of the elements are empty after the user clickes on the log in button.
   const [isInputEmpty, setIsInputEmpty] = useState({
@@ -41,13 +45,41 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Checks if any of the form values are empty and, thus, changes the corresponding value in the isInputEmpty state.
-    if(!validateInputFields()) {
+    const user = {
+      "username": formDetails.firstName + formDetails.lastName,
+      "firstname": formDetails.firstName,
+      "lastname": formDetails.lastName,
+      "email": formDetails.email,
+      "phonenumber": formDetails.phoneNumber,
+      "role": formDetails.role,
+      "password": formDetails.password
+    }
+
+    if (!formDetails.agreeToTerms) {
+      window.alert("You have to agree to the terms and conditions before you can register!");
+      return;
+    }
+
+    try {
+      setIsSubmitting(prev => prev = true);
+
+      // Checks if any of the form values are empty and, thus, changes the corresponding value in the isInputEmpty state.
+      if(!validateInputFields()) {
+        console.log(formDetails);
+      
+        const res = await axios.post("https://warehouzitserver.onrender.com/api/v1/auth/register", user);
+        console.log(res);
+        if (!res.status === 201 || res.status === 200) return;
+
+        window.alert("User created successfully!");
       // Cancels the login process entirely to ensure the user enters a value in all the required fields.
-      console.log(formDetails);
-      // const res = await axios.post();
-      // if(res)
-    } else return;
+      } else return;
+
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsSubmitting(prev => prev = false);
+    }
   }
 
   // Function to verify if all required input fields are filled. It return true if at least one is empty and false is all are filled.
@@ -104,23 +136,19 @@ const Register = () => {
         <FloatingInputBox error={isInputEmpty.password} label="Password" type="password" name="password" value={formDetails.password} placeholder="Password" handleChange={handleChange}/>
         <FloatingInputBox error={isInputEmpty.confirmPassword} label="Confirm Password" type="password" name="confirmPassword" value={formDetails.confirmPassword} placeholder="Confirm password" handleChange={handleChange}/>
 
-        <div className=''>
-          <div className='flex gap-2 items-center align-center w-full mb-6 mx-auto'>
-            <input
-              type='checkbox'
-              name='remember'
-              id='remember'
-              // checked={formDetails.remember}
-              // onChange={handleChange}
-            />
-            <label htmlFor='remember' className='text-black text-sm'>I agree to the terms and conditions</label>
-          </div>
-          
+        <div className='flex gap-2 items-center align-center w-full mb-6 mx-auto'>
+          <input
+            type='checkbox'
+            name='agreeToTerms'
+            checked={formDetails.agreeToTerms}
+            onChange={handleChange}
+          />
+          <label htmlFor='remember' className='text-black text-sm'>I agree to the terms and conditions</label>
         </div>
-
+          
         <button className='bg-primary-green mx-auto w-full text-white text-sm  rounded shadow p-4 font-semi-bold' type="submit">
           {/* hover:bg-white hover:border hover:border-primary-green hover:text-primary-green */}
-          Register
+          {isSubmitting ? "Registering..." : "Register"}
         </button>
       </form>
     </div>
