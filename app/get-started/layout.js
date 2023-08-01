@@ -2,12 +2,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
+// Metadata for the login and register page of Warehoutit
 export const metadata = {
     title: "Login & Sign Up",
     description: "Login and sign up page for Warehouzit"
 }
 
-// The layout of the get started route that contains both the Login and Get started components of the app
+// The layout of the get-started route that contains both the Login and Get started components and all the shared layouts between them.
 const GetStartedLayout = ({ children }) => {
     return (
         <div>

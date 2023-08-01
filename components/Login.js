@@ -65,6 +65,7 @@ const Login = () => {
     });
   }
 
+  // Changes the values of formDetails.role as the user selects the role - spaceseeker or spaceowner - from the RoleComponent
   const handleRoleComponentClick = (userRole) => {
     setFormDetails((prev) => {
       return {

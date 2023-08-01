@@ -10,7 +10,8 @@ const RoleComponent = ({ handleClick, role }) => {
                 src={"/assets/user-solid.svg"}
                 alt="User"
                 width={10}
-                height={10}/>
+                height={10}
+                className="opacity-50"/>
 
             <p className={`text-sm font-medium ${role === "spaceseeker" ? "text-primary-green" : "text-white"}`}>Space seekers</p>
       </div>
@@ -18,9 +19,10 @@ const RoleComponent = ({ handleClick, role }) => {
       <div className={`flex align-center justify-center rounded lg:w-1/2 w-full cursor-pointer ${role !== "spaceseeker" ? "bg-gray-300" : "bg-primary-green"}`} onClick={() => handleClick("spaceowner")}>
             <Image
                 src={"/assets/warehouse-solid.svg"}
-                alt="User"
+                alt="Warehouse"
                 width={15}
-                height={15}/>
+                height={15}
+                className="opacity-50"/>
 
             <p className={`text-sm font-medium p-3 ${role !== "spaceseeker" ? "text-primary-green" : "text-white"}`}>Space Owners</p>
       </div>

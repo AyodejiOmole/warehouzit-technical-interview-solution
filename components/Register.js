@@ -41,7 +41,7 @@ const Register = () => {
     });
   }
 
-  // Handles the submission of the login form.
+  // Handles the submission of the register form.
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -65,8 +65,6 @@ const Register = () => {
 
       // Checks if any of the form values are empty and, thus, changes the corresponding value in the isInputEmpty state.
       if(!validateInputFields()) {
-        console.log(formDetails);
-      
         const res = await axios.post("https://warehouzitserver.onrender.com/api/v1/auth/register", user);
         console.log(res);
         if (!res.status === 201 || res.status === 200) return;
@@ -86,6 +84,8 @@ const Register = () => {
   const validateInputFields = () => {
     let atLeastOneIsEmpty;
 
+    // Checks if all the input boxes are filled. 
+    // If at least one is empty, it changes the atLeastOneIsEmpty field to true to denote that at least one of the input field isn't filled.
     for(const key in isInputEmpty) {
       if(formDetails[key] === "") {
         handleIsInputEmpty(key);
@@ -94,6 +94,7 @@ const Register = () => {
       }
     }
 
+    // Checks if the password the user enters matches the one entered into the confirm password input box.
     if(formDetails.password !== formDetails.confirmPassword) {
       atLeastOneIsEmpty = true;
       for(const key in isInputEmpty) {
@@ -116,6 +117,7 @@ const Register = () => {
     });
   }
 
+  // Changes the values of formDetails.role as the user selects the role - spaceseeker or spaceowner - from the RoleComponent
   const handleRoleComponentClick = (userRole) => {
     setFormDetails((prev) => {
       return {
@@ -146,7 +148,10 @@ const Register = () => {
           <label htmlFor='remember' className='text-black text-sm'>I agree to the terms and conditions</label>
         </div>
           
-        <button className='bg-primary-green mx-auto w-full text-white text-sm  rounded shadow p-4 font-semi-bold' type="submit">
+        <button 
+          className={`mx-auto w-full ${isSubmitting ? "cursor-not-allowed bg-gray-300" : "cursor-pointer bg-primary-green"} text-white text-sm rounded shadow p-4 font-semi-bold`} 
+          type="submit"
+          disabled={isSubmitting}>
           {/* hover:bg-white hover:border hover:border-primary-green hover:text-primary-green */}
           {isSubmitting ? "Registering..." : "Register"}
         </button>
