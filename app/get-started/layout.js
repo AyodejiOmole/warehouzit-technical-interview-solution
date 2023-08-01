@@ -18,7 +18,18 @@ const GetStartedLayout = ({ children }) => {
                     <h3 className="text-2xl font-semibold cursor-pointer text-white">&times;</h3>
                 </Link>
             </div>
+
             {children}
+
+            <div class="flex items-center justify-center lg:w-1/3 w-full md:w-1/2 mx-auto">
+                {/* <!-- Left horizontal line --> */}
+                <div class="w-1/4 h-px bg-gray-400"></div> 
+                
+                <span class="mx-3 text-black text-sm">or continue with</span>
+
+                {/* <!-- Right horizontal line --> */}
+                <div class="w-1/4 h-px bg-gray-400"></div> 
+            </div>
         </div>
     )
 }
