@@ -64,7 +64,7 @@ const Login = () => {
   }
 
   return (
-    <div className='lg:w-1/3 w-full md:w-1/3 mx-auto'>
+    <div className='lg:w-1/3 w-full md:w-1/3 mx-auto mt-6'>
       <form onSubmit={handleSubmit} className='flex flex-col align-center justify-center w-full'>
         <FloatingInputBox error={isInputEmpty.email} label="Email address" type="text" name="email" value={formDetails.email} placeholder="Email address" handleChange={handleChange}/>
         <FloatingInputBox error={isInputEmpty.password} label="Password" type="password" name="password" value={formDetails.password} placeholder="Password" handleChange={handleChange}/>

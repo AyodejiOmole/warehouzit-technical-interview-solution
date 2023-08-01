@@ -73,7 +73,7 @@ const Register = () => {
     });
   }
   return (
-    <div className='lg:w-1/3 w-full md:w-1/2 mx-auto'>
+    <div className='lg:w-1/3 w-full md:w-1/2 mx-auto mt-6'>
       <form onSubmit={handleSubmit} className='flex flex-col align-center justify-center w-full'>
         <FloatingInputBox error={isInputEmpty.firstName} label="First name" type="text" name="firstName" value={formDetails.firstName} placeholder="First name" handleChange={handleChange}/>
         <FloatingInputBox error={isInputEmpty.lastName} label="Last name" type="text" name="lastName" value={formDetails.lastName} placeholder="Last name" handleChange={handleChange}/>

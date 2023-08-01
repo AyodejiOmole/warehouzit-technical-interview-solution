@@ -11,7 +11,7 @@ export const metadata = {
 const GetStartedLayout = ({ children }) => {
     return (
         <div>
-            <div className="flex justify-between align-center items-center p-4 bg-primary-green w-full">
+            <div className="flex justify-between fixed z-10 align-center items-center p-4 bg-primary-green w-full">
                 <p className="text-white font-semibold text-sm md:text-base lg:text-lg">Hello, Welcome</p>
                 {/* A cancel button to close the login/register page and return to the Homepage */}
                 <Link href="/">
