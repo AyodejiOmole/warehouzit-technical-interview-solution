@@ -21,14 +21,14 @@ const GetStartedLayout = ({ children }) => {
 
             {children}
 
-            <div class="flex items-center justify-center lg:w-1/3 w-full md:w-1/2 mx-auto">
+            <div className="flex items-center justify-center lg:w-1/3 w-full md:w-1/2 mx-auto">
                 {/* <!-- Left horizontal line --> */}
-                <div class="w-1/4 h-px bg-gray-400"></div> 
+                <div className="lg:w-1/4 md:w-1/4 w-1/3 h-px bg-gray-400"></div> 
                 
-                <span class="mx-3 text-black text-sm">or continue with</span>
+                <span className="mx-3 text-black text-sm">or continue with</span>
 
                 {/* <!-- Right horizontal line --> */}
-                <div class="w-1/4 h-px bg-gray-400"></div> 
+                <div className="lg:w-1/4 md:w-1/4 w-1/3 h-px bg-gray-400"></div> 
             </div>
         </div>
     )

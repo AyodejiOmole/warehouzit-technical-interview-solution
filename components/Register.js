@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import FloatingInputBox from './FloatingInputBox';
 import axios from 'axios';
+import RoleComponent from './RoleComponent';
 
 const Register = () => {
   // Stores the values of each input box. 
@@ -12,6 +13,7 @@ const Register = () => {
     password: "",
     confirmPassword: "",
     phoneNumber: "",
+    role: "spaceseeker",
   });
 
   // To determine if the input boxes of the elements are empty after the user clickes on the log in button.
@@ -35,7 +37,7 @@ const Register = () => {
     });
   }
 
-  // Handles the submittion of the login form.
+  // Handles the submission of the login form.
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -43,7 +45,7 @@ const Register = () => {
     if(!validateInputFields()) {
       // Cancels the login process entirely to ensure the user enters a value in all the required fields.
       console.log(formDetails);
-      const res = await axios.post();
+      // const res = await axios.post();
       // if(res)
     } else return;
   }
@@ -60,6 +62,15 @@ const Register = () => {
       }
     }
 
+    if(formDetails.password !== formDetails.confirmPassword) {
+      atLeastOneIsEmpty = true;
+      for(const key in isInputEmpty) {
+        if(key === "confirmPassword") {
+          handleIsInputEmpty(key);
+        }
+      }
+    }
+
     return atLeastOneIsEmpty;
   }
 
@@ -72,9 +83,20 @@ const Register = () => {
       }
     });
   }
+
+  const handleRoleComponentClick = (userRole) => {
+    setFormDetails((prev) => {
+      return {
+        ...prev,
+        role: userRole,
+      }
+    });
+  }
+
   return (
     <div className='lg:w-1/3 w-full md:w-1/2 mx-auto mt-6'>
       <form onSubmit={handleSubmit} className='flex flex-col align-center justify-center w-full'>
+        <RoleComponent role={formDetails.role} handleClick={handleRoleComponentClick}/>
         <FloatingInputBox error={isInputEmpty.firstName} label="First name" type="text" name="firstName" value={formDetails.firstName} placeholder="First name" handleChange={handleChange}/>
         <FloatingInputBox error={isInputEmpty.lastName} label="Last name" type="text" name="lastName" value={formDetails.lastName} placeholder="Last name" handleChange={handleChange}/>
         <FloatingInputBox error={isInputEmpty.email} label="Email address" type="text" name="email" value={formDetails.email} placeholder="Email address" handleChange={handleChange}/>

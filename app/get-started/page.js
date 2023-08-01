@@ -16,7 +16,7 @@ const GetStarted = () => {
     <div className='w-full lg:p-8 p-4'>
 
       {/* Tab to change the page visible to the user from Login to Register or as the user deems fits. */}
-      <div className='flex border-b-2 border-gray-300 lg:w-1/3 w-full md:w-1/3 mx-auto mt-12'>
+      <div className='flex border-b-2 border-gray-300 lg:w-1/3 w-full md:w-1/2 mx-auto mt-12'>
         <div className='w-full flex justity-between gap-3'>
             <p 
                 onClick={() => handleClick("login")}

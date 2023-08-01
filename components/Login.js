@@ -1,13 +1,15 @@
 "use client";
 import React, { useState } from 'react';
 import FloatingInputBox from './FloatingInputBox';
+import RoleComponent from './RoleComponent';
 
 const Login = () => {
   // Stores the values of each input box. 
   const [formDetails, setFormDetails] = useState({
     email: "",
     password: "",
-    remember: false
+    remember: false,
+    role: "spaceseeker"
   });
 
   // To determine if the input boxes of the elements are empty after the user clickes on the log in button.
@@ -63,9 +65,19 @@ const Login = () => {
     });
   }
 
+  const handleRoleComponentClick = (userRole) => {
+    setFormDetails((prev) => {
+      return {
+        ...prev,
+        role: userRole,
+      }
+    });
+  }
+
   return (
-    <div className='lg:w-1/3 w-full md:w-1/3 mx-auto mt-6'>
+    <div className='lg:w-1/3 w-full md:w-1/2 mx-auto mt-6'>
       <form onSubmit={handleSubmit} className='flex flex-col align-center justify-center w-full'>
+        <RoleComponent role={formDetails.role} handleClick={handleRoleComponentClick}/>
         <FloatingInputBox error={isInputEmpty.email} label="Email address" type="text" name="email" value={formDetails.email} placeholder="Email address" handleChange={handleChange}/>
         <FloatingInputBox error={isInputEmpty.password} label="Password" type="password" name="password" value={formDetails.password} placeholder="Password" handleChange={handleChange}/>
   
