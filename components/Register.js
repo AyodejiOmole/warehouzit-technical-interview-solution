@@ -46,7 +46,7 @@ const Register = () => {
     e.preventDefault();
 
     const user = {
-      "username": formDetails.firstName + formDetails.lastName,
+      "username": formDetails.firstName.toLowerCase() + ".a",
       "firstname": formDetails.firstName,
       "lastname": formDetails.lastName,
       "email": formDetails.email,
@@ -54,6 +54,8 @@ const Register = () => {
       "role": formDetails.role,
       "password": formDetails.password
     }
+
+    console.log(user);
 
     if (!formDetails.agreeToTerms) {
       window.alert("You have to agree to the terms and conditions before you can register!");
